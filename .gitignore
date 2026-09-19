@@ -6,3 +6,12 @@ data1.csv
 data2.csv
 data3.csv
 data4.csv
+.Trigram_Class.py.swp
+.engine.py.swp
+.trigram.py.swp
+__pycache__/
+amino_acids.txt
+engine.py
+proteinogenics.txt
+trigram.py
+
