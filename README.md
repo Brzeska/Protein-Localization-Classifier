@@ -59,3 +59,7 @@ an accuracy on the dev set. To change the only hyperparameter, go into
 own testing, 7 achieved the best accuracy, but between 5–15 were all comparable.
 
 To get a test accuracy, just run `final_test.py`
+
+## AI Usage
+
+I used claude code to upload the MIT license, for python syntax and biology reference(in particular for a pandas refresher), and as a general sanity check at the end. All code and design were my own in both concept and execution.
