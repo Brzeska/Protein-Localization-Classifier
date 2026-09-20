@@ -15,3 +15,16 @@ engine.py
 proteinogenics.txt
 trigram.py
 .localization_split.py.swp
+.classifier.py.swp
+cellmembrane_trigram.pkl
+cytoplasm_trigram.pkl
+endoplasmicreticulum_trigram.pkl
+extracellular_trigram.pkl
+golgi_apparatus_trigram.pkl
+lysosome_vacuole_trigram.pkl
+mitochondrion_trigram.pkl
+nucleus_trigram.pkl
+peroxisome_trigram.pkl	
+plastid_trigram.pkl
+test.py
+peroxisome_trigram.pkl
