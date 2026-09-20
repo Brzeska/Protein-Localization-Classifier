@@ -28,3 +28,4 @@ peroxisome_trigram.pkl
 plastid_trigram.pkl
 test.py
 peroxisome_trigram.pkl
+.dev_testing.py.swp
