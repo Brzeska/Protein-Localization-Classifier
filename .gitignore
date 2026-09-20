@@ -12,7 +12,6 @@ data4.csv
 __pycache__/
 amino_acids.txt
 engine.py
-proteinogenics.txt
 trigram.py
 .localization_split.py.swp
 .classifier.py.swp
