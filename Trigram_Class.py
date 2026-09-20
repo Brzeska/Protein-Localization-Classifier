@@ -56,7 +56,16 @@ class Trigram_Model:
         #print(self.N)
 
     def compute_loss(self,sequence):
-        pass
+        normalization = len(sequence)
+        p_sum = 0
+        for i in zip(sequence,sequence[1:],sequence[2:]):
+            bigram_index = self.btoi[i[0] + i[1]]
+            label_index = self.ctoi[i[2]]
+            label_probability = float(self.P[bigram_index,label_index])
+            nll = -np.log(label_probability)
+            p_sum += nll
+        return p_sum/normalization
+            
 
     def show_probability(self):
         '''
