@@ -2,7 +2,9 @@
 
 The 'protein localization classifier' is a trigram based classifier which
 takes an amino acid sequence as an input and predicts the localization of the
-corresponding protein in the cell.
+corresponding protein in the cell. Trigram classification is a known weak method,
+but this project served as a valuable personal introduction to computational biology 
+and will serve as a baseline against which future more powerful models can be measured.
 
 The classifier uses ten separate amino acid-level trigram character models, 
 each one trained on a localization-filtered subset of DeepLoc 2.0's protein
