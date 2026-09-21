@@ -16,7 +16,7 @@ predicted localization.
 The trigram models were implemented as simple count matrices from which a 
 probability matrix was calculated.
 
-Cross validation yielded maximum dev accuracy when the count matrix was initialized
+Four-fold ross validation yielded maximum dev accuracy when the count matrix was initialized
 with model smoothing factor k=7. Further improvements could likely be made by having
 multiple smoothing factors which are not uniform across the different trigram models.
 
@@ -42,7 +42,7 @@ protein language models. *Nucleic Acids Research*, 50(W1), W228–W234.
 
 ## How to run
 
-First navigate to repo through CLI. First run `partition_data.py` to split the 
+First navigate to repo through CLI. Run `partition_data.py` to split the 
 dataset into five separate, homology aware partitions.
 
 Once the data is partitioned, run `cross_val.py` to have the system run cross
@@ -64,4 +64,4 @@ run `final_train_and_score.py` before classification.
 
 ## AI Usage
 
-I used claude code to upload the MIT license, for python syntax and biology reference(in particular for a pandas refresher), and as a general sanity check at the end. All code and design were my own in both concept and execution.
+I used Claude Code to upload the MIT license, for python syntax and biology reference (in particular for a pandas refresher), and as a general sanity check at the end. All code and design were my own in both concept and execution.
