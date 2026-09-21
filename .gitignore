@@ -29,3 +29,7 @@ test.py
 peroxisome_trigram.pkl
 .dev_testing.py.swp
 .final_test.py.swp
+.DS_Store
+.cross_val.py.swp
+i
+plan.txt
