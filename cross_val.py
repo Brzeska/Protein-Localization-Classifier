@@ -8,6 +8,7 @@ import sys
 k = 1
 
 for k in np.arange(5,12,1.0):
+data0 = pd.read_csv('data0.csv',index_col=0)
     highest_mean = 0
     best_k = 0
     #print(f'Cross validating on smoothing parameter k={k}')
@@ -53,4 +54,4 @@ for k in np.arange(5,12,1.0):
 
         
 
-print(f'best mean ({current_mean}) for k={k}')
+print(f'best mean ({best_mean}) for k={best_k}')
