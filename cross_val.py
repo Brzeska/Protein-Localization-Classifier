@@ -7,17 +7,18 @@ import sys
 #k: smoothing parameter!
 k = 1
 
-for k in np.arange(5,12,1.0):
+highest_mean = 0
+best_k = 0
+
+
 data0 = pd.read_csv('data0.csv',index_col=0)
-    highest_mean = 0
-    best_k = 0
-    #print(f'Cross validating on smoothing parameter k={k}')
+data1 = pd.read_csv('data1.csv',index_col=0)
+data2 = pd.read_csv('data2.csv',index_col=0)
+data3 = pd.read_csv('data3.csv',index_col=0)
 
+for k in np.arange(5,12,1.0):
     data0 = pd.read_csv('data0.csv',index_col=0)
-    data1 = pd.read_csv('data1.csv',index_col=0)
-    data2 = pd.read_csv('data2.csv',index_col=0)
-    data3 = pd.read_csv('data3.csv',index_col=0)
-
+    #print(f'Cross validating on smoothing parameter k={k}')
     splits = [data0,data1,data2,data3]
     accuracies = []
     
@@ -54,4 +55,4 @@ data0 = pd.read_csv('data0.csv',index_col=0)
 
         
 
-print(f'best mean ({best_mean}) for k={best_k}')
+print(f'best mean ({highest_mean}) for k={best_k}')

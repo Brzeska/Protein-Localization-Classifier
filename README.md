@@ -20,7 +20,7 @@ Cross validation yielded maximum dev accuracy when the count matrix was initiali
 with model smoothing factor k=7. Further improvements could likely be made by having
 multiple smoothing factors which are not uniform across the different trigram models.
 
-Best dev accuracy was 51.14%, and the test accuracy for the same hyperparameter was
+Best average dev accuracy was 51.87%, and the test accuracy for the same hyperparameter was
 51.19%. This is considerably worse than state of the art protein language models,
 which score ~75–80% on this dataset. However, it is considerably better than 
 random guessing (~10%) or other naive strategies like 'cytoplasm only' (~35%). A
@@ -43,8 +43,7 @@ protein language models. *Nucleic Acids Research*, 50(W1), W228–W234.
 ## How to run
 
 First navigate to repo through CLI. First run `partition_data.py` to split the 
-dataset into five separate, homology aware partitions. The first three (0–2) 
-are used as the training set, 3 is used as dev set, and 4 as test set.
+dataset into five separate, homology aware partitions.
 
 Once the data is partitioned, run `cross_val.py` to have the system run cross
 validation across a range of smoothing parameter k, using the all data partitions
