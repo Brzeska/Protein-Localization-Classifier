@@ -2,4 +2,3 @@ numpy
 pytorch
 matplotlib
 pandas
-pickle
