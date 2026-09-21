@@ -44,19 +44,15 @@ First navigate to repo through CLI. First run `partition_data.py` to split the
 dataset into five separate, homology aware partitions. The first three (0–2) 
 are used as the training set, 3 is used as dev set, and 4 as test set.
 
-Once the data is partitioned, `localization_split_and_train.py` concatenates the 
-training set, splits it along localizations, and trains ten trigram models, one
-on each localization subset. This step is essential since the trained models are
-not included in the repo. Should only take a minute or two.
+Once the data is partitioned, run `cross_val.py` to have the system run cross
+validation across a range of smoothing parameter k, using the all data partitions
+except data4.csv for train/val rotations. To speed up tuning, start with a larger
+increment in the main loop (one or greater; you will have to manually change this)
+and then edit the loop parameters to be more finely resolved closer to previous
+maximum. My experiments landed on an ideal smoothing hyperparameter k=7.0.
 
 To have the model classify a given sequence, open `classifier.py` and enter
 the sequence as a string on line 20. Delete the placeholder sequence first.
-
-To repeat cross validation, use `localization_split_and_train.py` and 
-`dev_testing.py`. Run the former to train the model, and the latter to get
-an accuracy on the dev set. To change the only hyperparameter, go into 
-`Trigram_Class.py` and change the constant which terminates line 37. From my
-own testing, 7 achieved the best accuracy, but between 5–15 were all comparable.
 
 To get a test accuracy, just run `final_test.py`
 
