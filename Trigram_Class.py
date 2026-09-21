@@ -9,10 +9,11 @@ import torch
 #print(chars)
 
 class Trigram_Model:
-    def __init__(self,data,alphabet):
+    def __init__(self,data,alphabet,k):
         
         self.data = data #data should be passed as word/sequence list
-        
+        self.k = k #smoothing hyperparameter
+
         #alphabet should be passed as list
         #could be derived from data, but an explicit pass ensures
         #no discrepancies between different class instantiations
@@ -34,7 +35,7 @@ class Trigram_Model:
         self.itoc = {i:s for i,s in enumerate(self.alphabet)}
 
         #Construct count matrix, initialized as ones for model smoothing
-        self.N = torch.ones((len(self.alphabet)**2,len(self.alphabet)),dtype=torch.int32)*7 #k=7 smoothing factor selected by cross validation
+        self.N = torch.ones((len(self.alphabet)**2,len(self.alphabet)),dtype=torch.int32)*k
 
         #Start populating count matrix with instances
         for seq in self.data:
