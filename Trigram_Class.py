@@ -35,7 +35,7 @@ class Trigram_Model:
         self.itoc = {i:s for i,s in enumerate(self.alphabet)}
 
         #Construct count matrix, initialized as ones for model smoothing
-        self.N = torch.ones((len(self.alphabet)**2,len(self.alphabet)),dtype=torch.int32)*k
+        self.N = torch.ones((len(self.alphabet)**2,len(self.alphabet)),dtype=torch.float32)*k
 
         #Start populating count matrix with instances
         for seq in self.data:
