@@ -7,7 +7,7 @@ import sys
 #k: smoothing parameter!
 k = 1
 
-for k in np.arange(3,12,.2):
+for k in np.arange(5,12,1.0):
     highest_mean = 0
     best_k = 0
     #print(f'Cross validating on smoothing parameter k={k}')
@@ -19,8 +19,8 @@ for k in np.arange(3,12,.2):
 
     splits = [data0,data1,data2,data3]
     accuracies = []
-
-
+    
+    
     cycle = 1 #which turn of cross val it is
     for dev in splits:
         #print()
