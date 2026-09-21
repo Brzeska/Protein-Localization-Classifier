@@ -57,7 +57,8 @@ class Trigram_Model:
         #print(self.N)
 
     def compute_loss(self,sequence):
-        normalization = len(sequence)
+        sequence = '..' + sequence + '.'
+        normalization = len(sequence)-2
         p_sum = 0
         for i in zip(sequence,sequence[1:],sequence[2:]):
             bigram_index = self.btoi[i[0] + i[1]]
