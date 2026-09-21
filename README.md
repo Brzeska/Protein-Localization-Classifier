@@ -21,7 +21,7 @@ with model smoothing factor k=7. Further improvements could likely be made by ha
 multiple smoothing factors which are not uniform across the different trigram models.
 
 Best average dev accuracy was 51.87%, and the test accuracy for the same hyperparameter was
-51.19%. This is considerably worse than state of the art protein language models,
+52.84%. This is considerably worse than state of the art protein language models,
 which score ~75–80% on this dataset. However, it is considerably better than 
 random guessing (~10%) or other naive strategies like 'cytoplasm only' (~35%). A
 suboptimal accuracy is also to be expected given that a trigram model is by nature
@@ -52,10 +52,15 @@ increment in the main loop (one or greater; you will have to manually change thi
 and then edit the loop parameters to be more finely resolved closer to previous
 maximum. My experiments landed on an ideal smoothing hyperparameter k=7.0.
 
+Once ideal hyperparameter is determined, enter this in the config section of
+`final_train_and_score.py`, then run `final_train_and_score.py` to train the 
+model on the first four train/dev partitions, and to score it on the final test
+partition.
+
 To have the model classify a given sequence, open `classifier.py` and enter
 the sequence as a string on line 20. Delete the placeholder sequence first.
-
-To get a test accuracy, just run `final_test.py`
+The saved model is whatever is last trained, so make sure that you have
+run `final_train_and_score.py` before classification.
 
 ## AI Usage
 
