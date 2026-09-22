@@ -20,12 +20,25 @@ Four-fold ross validation yielded maximum dev accuracy when the count matrix was
 with model smoothing factor k=7. Further improvements could likely be made by having
 multiple smoothing factors which are not uniform across the different trigram models.
 
+## Results
+
 Best average dev accuracy was 51.87%, and the test accuracy for the same hyperparameter was
 52.84%. This is considerably worse than state of the art protein language models,
 which score ~75–80% on this dataset. However, it is considerably better than 
 random guessing (~10%) or other naive strategies like 'cytoplasm only' (~35%). A
 suboptimal accuracy is also to be expected given that a trigram model is by nature
 blind to large scale structure in the data.
+
+`final_train_and_score.py` now outputs a confusion matrix (rows are ground truth
+and columns are model prediction), as well as a row normalized confusion matrix.
+The diagonal of this row-normalized confusion matrix is the per label model accuracy,
+pictured below:
+
+![Test set results](Test_Set_Results.png)
+
+Evidently, the model has prioritized labels which are more common, and is extremely
+inaccurate for the less-represented labels (in particular, it has learned to 
+simply never guess peroxisome).
 
 The primary goals of this project were achieved: to work with a real biological
 dataset, and to create a model which was more informative than a completely naive

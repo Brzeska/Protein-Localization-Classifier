@@ -121,4 +121,8 @@ def score(data,confmat=False):
         print()
         print(conf_counts/conf_counts.sum(1,keepdim=True))
         print(per_class_accuracies)
+
+
+        for i in range(len(localizations)):
+            print(f'model accuracy for class {localizations[i]}: {per_class_accuracies[i]} (number of instances {conf_counts.sum(1,keepdim=False)[i]})')
     return right/(right+wrong)

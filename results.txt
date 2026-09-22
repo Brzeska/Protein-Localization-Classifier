@@ -1,0 +1,17 @@
+Test set results
+
+Per label accuracies (parentheses are number of instances)
+
+##LABEL##                   ##ACCURACY##
+Cytoplasm (1831):               0.526
+Nucleus (2017):                 0.495
+Extracellular (599):            0.481
+Cell membrane (697):            0.549
+Mitochondrion (516):            0.295
+Plastid (222):                  0.018
+Endoplasmic reticulum (396):    0.234
+Lysosome/Vacuole (243):         0.008
+Golgi apparatus (192):          0.005
+Peroxisome (53):                0.000
+
+Mean accuracy over all instances: 0.5283778835591358
