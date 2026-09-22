@@ -9,7 +9,7 @@ import torch
 #print(chars)
 
 class Trigram_Model:
-    def __init__(self,data,alphabet,k):
+    def __init__(self,data,alphabet,k,N_matrix=None):
         
         self.data = data #data should be passed as word/sequence list
         self.k = k #smoothing hyperparameter
@@ -33,20 +33,29 @@ class Trigram_Model:
         #construct mappings of characters to indices
         self.ctoi = {s:i for i,s in enumerate(self.alphabet)}
         self.itoc = {i:s for i,s in enumerate(self.alphabet)}
-
-        #Construct count matrix, initialized as ones for model smoothing
-        self.N = torch.ones((len(self.alphabet)**2,len(self.alphabet)),dtype=torch.float32)*k
-
-        #Start populating count matrix with instances
-        for seq in self.data:
-            chs = ['.','.'] + list(seq) + ['.']
-            for ch1, ch2, ch in zip(chs, chs[1:],chs[2:]):
-                bi = ch1 + ch2
-                self.N[self.btoi[bi],self.ctoi[ch]]+=1
+        
+        if N_matrix == None: #need to create the matrix if none is passed
+            #Construct count matrix, initialized as ones for model smoothing
+            self.N = torch.zeros((len(self.alphabet)**2,len(self.alphabet)),dtype=torch.float32)
+            self.smoothing_const = torch.ones((len(self.alphabet)**2,len(self.alphabet)),dtype=torch.float32)*k
+            #Start populating count matrix with instances
+            for seq in self.data:
+                chs = ['.','.'] + list(seq) + ['.']
+                for ch1, ch2, ch in zip(chs, chs[1:],chs[2:]):
+                    bi = ch1 + ch2
+                    self.N[self.btoi[bi],self.ctoi[ch]]+=1
+            self.final = self.N + self.smoothing_const
+        else: #means a probability matrix was passed
+            self.N = N_matrix
+            self.smoothing_const = torch.ones((len(self.alphabet)**2,len(self.alphabet)),dtype=torch.float32)*k
+            self.final = self.N + self.smoothing_const
 
         #Derive probability matrix from count matrix
         self.P = torch.zeros((len(self.alphabet)**2,len(self.alphabet)))
-        self.P += self.N/self.N.sum(1,keepdim=True)
+        self.P += self.final/self.final.sum(1,keepdim=True)
+    
+    def return_counts(self):
+        return self.N
 
     def display(self):
         print(self.alphabet)
