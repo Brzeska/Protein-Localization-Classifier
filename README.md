@@ -36,9 +36,13 @@ pictured below:
 
 ![Test set results](Test_Set_Results.png)
 
-Evidently, the model has prioritized labels which are more common, and is extremely
-inaccurate for the less-represented labels (in particular, it has learned to 
-simply never guess peroxisome).
+The smaller classes have much lower accuracy. This is probably because the smoothing factor
+k=7 is applied uniformly to the count matrices, and for a very small class, the number
+of real counts cannot compete with smoothing. In addition to this fact, smaller classes
+will have inherently noisier trigram models, which will drive up their loss and bias the
+entire model against them. Peroxisome in particular, which was barely represented in the test
+set, was accurately guessed 0% of the time. Results could possibly be improved by having a
+per-label smoothing factor proportional to the number of instances of that label.
 
 The primary goals of this project were achieved: to work with a real biological
 dataset, and to create a model which was more informative than a completely naive
