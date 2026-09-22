@@ -4,7 +4,6 @@ from score import score
 import pandas as pd
 import numpy as np
 
-
 #config:
 k = 7.0 #change to optimal smoothing factor (run cross_val.py to find)
 
@@ -21,4 +20,5 @@ data = pd.concat([data0,data1,data2,data3])
 data4 = pd.read_csv('data4.csv',index_col=0)
 
 train(data,k)
-print(f'final score: {score(data4)}')
+print(f'final score: {score(data4,True)}')
+
