@@ -6,17 +6,18 @@ corresponding protein in the cell. Trigram classification is a known weak method
 but this project served as a valuable personal introduction to computational biology 
 and will serve as a baseline against which future more powerful models can be measured.
 
-The classifier uses ten separate amino acid-level trigram character models, 
+rhe classifier uses ten separate amino acid-level trigram character models, 
 each one trained on a localization-filtered subset of DeepLoc 2.0's protein
 localization dataset. Thus there is one trigram model for each localization. Novel
 sequences are then passed through each of the ten models, yielding ten different
 negative log likelihoods. The lowest of these is selected by the classifier as the
-predicted localization.
+predicted localization. Some sequences have multiple localizations. A classification
+which guesses at least one of these is considered correct in the accuracy calcuation.
 
 The trigram models were implemented as simple count matrices from which a 
 probability matrix was calculated.
 
-Four-fold ross validation yielded maximum dev accuracy when the count matrix was initialized
+Four-fold cross validation yielded maximum dev accuracy when the count matrix was initialized
 with model smoothing factor k=7. Further improvements could likely be made by having
 multiple smoothing factors which are not uniform across the different trigram models.
 
@@ -40,7 +41,7 @@ The smaller classes have much lower accuracy. This is probably because the smoot
 k=7 is applied uniformly to the count matrices, and for a very small class, the number
 of real counts cannot compete with smoothing. In addition to this fact, smaller classes
 will have inherently noisier trigram models, which will drive up their loss and bias the
-entire model against them. Peroxisome in particular, which was barely represented in the test
+entire model against them. Peroxisome in particular, which was barely represented in the data
 set, was accurately guessed 0% of the time. Results could possibly be improved by having a
 per-label smoothing factor proportional to the number of instances of that label.
 
