@@ -6,13 +6,13 @@ corresponding protein in the cell. Trigram classification is a known weak method
 but this project served as a valuable personal introduction to computational biology 
 and will serve as a baseline against which future more powerful models can be measured.
 
-rhe classifier uses ten separate amino acid-level trigram character models, 
+The classifier uses ten separate amino acid-level trigram character models, 
 each one trained on a localization-filtered subset of DeepLoc 2.0's protein
 localization dataset. Thus there is one trigram model for each localization. Novel
 sequences are then passed through each of the ten models, yielding ten different
 negative log likelihoods. The lowest of these is selected by the classifier as the
 predicted localization. Some sequences have multiple localizations. A classification
-which guesses at least one of these is considered correct in the accuracy calcuation.
+which guesses at least one of these is considered correct in the accuracy calculation.
 
 The trigram models were implemented as simple count matrices from which a 
 probability matrix was calculated.
@@ -25,24 +25,25 @@ multiple smoothing factors which are not uniform across the different trigram mo
 
 Best average dev accuracy was 51.87%, and the test accuracy for the same hyperparameter was
 52.84%. This is considerably worse than state of the art protein language models,
-which score ~75–80% on this dataset. However, it is considerably better than 
+which score ~75–80% on this dataset (although not strictly comparable since my model
+does not do multi-label prediction. However, it is considerably better than 
 random guessing (~10%) or other naive strategies like 'cytoplasm only' (~35%). A
 suboptimal accuracy is also to be expected given that a trigram model is by nature
 blind to large scale structure in the data.
 
 `final_train_and_score.py` now outputs a confusion matrix (rows are ground truth
 and columns are model prediction), as well as a row normalized confusion matrix.
-The diagonal of this row-normalized confusion matrix is the per label model accuracy,
+The diagonal of this row-normalized confusion matrix is the per class recall,
 pictured below:
 
 ![Test set results](Test_Set_Results.png)
 
-The smaller classes have much lower accuracy. This is probably because the smoothing factor
+The smaller classes have much lower recall. This is probably because the smoothing factor
 k=7 is applied uniformly to the count matrices, and for a very small class, the number
 of real counts cannot compete with smoothing. In addition to this fact, smaller classes
 will have inherently noisier trigram models, which will drive up their loss and bias the
 entire model against them. Peroxisome in particular, which was barely represented in the data
-set, was accurately guessed 0% of the time. Results could possibly be improved by having a
+set, was predicted 0% of the time. Results could possibly be improved by having a
 per-label smoothing factor proportional to the number of instances of that label.
 
 The primary goals of this project were achieved: to work with a real biological
