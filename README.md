@@ -76,8 +76,16 @@ Once ideal hyperparameter is determined, enter this in the config section of
 model on the first four train/dev partitions, and to score it on the final test
 partition.
 
-To have the model classify a given sequence, open `classifier.py` and enter
-the sequence as a string on line 20. Delete the placeholder sequence first.
+To have the model classify a given sequence, run:
+
+`python3 classifier.py [sequence]` in the CLI.
+
+For example, to get the localization for ubiquitin:
+
+`python3 classifier.py MQIFVKTLTGKTITLEVEPSDTIENVKAKIQDKEGIPPDQQRLIFAGKQLEDGRTLSDYNIQKESTLHLVLRLRGG`
+
+Which, incidentally, it gets wrong.
+
 The saved model is whatever is last trained, so make sure that you have
 run `final_train_and_score.py` before classification.
 
