@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 from Trigram_Class import Trigram_Model
 import pickle
-
+import sys
 
 #load in all the trigrams!
 cytoplasm_trigram = pickle.load(open('cytoplasm_trigram.pkl','rb'))
@@ -16,8 +16,7 @@ lysosome_vacuole_trigram = pickle.load(open('lysosome_vacuole_trigram.pkl','rb')
 golgi_apparatus_trigram = pickle.load(open('golgi_apparatus_trigram.pkl','rb'))
 peroxisome_trigram = pickle.load(open('peroxisome_trigram.pkl','rb'))
 
-#put sequence here
-sequence = 'MKALIVLGLVLLSVTVQGKVFERCELARTLKRLGMDGYRGISLANWMCLAKWESGYNTRATNYNAGDRSTDYGIFQINSRYWCNDGKTPGAVNACHLSCSALLQDNIADAVACAKRVVRDPQGIRAWVAWRNRCQNRDVRQYVQGCGV'
+sequence = sys.argv[1]
 
 losses = [cytoplasm_trigram.compute_loss(sequence),
     nucleus_trigram.compute_loss(sequence),
